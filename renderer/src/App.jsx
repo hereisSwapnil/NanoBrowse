@@ -104,13 +104,13 @@ function App() {
         <div style={{ flex: 1, background: '#0f0f0f', minWidth: 0 }} />
 
         {/* Sidebar */}
-        {sidebarOpen && (
+        <div style={{ display: sidebarOpen ? 'flex' : 'none', height: '100%' }}>
           <Sidebar
             currentTitle={title}
             hasApiKey={!!apiKey}
             onOpenSettings={handleOpenSettings}
           />
-        )}
+        </div>
       </div>
 
       {/* Settings Modal — renders above everything */}

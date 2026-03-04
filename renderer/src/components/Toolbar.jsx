@@ -9,6 +9,8 @@ const styles = {
   toolbar: {
     height: 'var(--toolbar-height)',
     background: 'var(--bg-secondary)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
     borderBottom: '1px solid var(--border)',
     display: 'flex',
     alignItems: 'center',

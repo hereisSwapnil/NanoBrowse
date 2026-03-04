@@ -306,6 +306,7 @@ function createWindow() {
     backgroundColor: '#0f0f0f',
     titleBarStyle: 'hiddenInset',
     trafficLightPosition: { x: 16, y: 16 },
+    icon: path.join(__dirname, 'build/icons/256x256.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,

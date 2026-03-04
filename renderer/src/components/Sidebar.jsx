@@ -10,34 +10,35 @@ import {
 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import iconUrl from '../assets/icon.png'
 
 // ─── Tool metadata ─────────────────────────────────────────────────────────────
 
 const TOOL_META = {
-  navigate:           { icon: Globe,            color: '#818cf8', label: (a) => `Navigate → ${a?.url ? truncate(a.url, 40) : '...'}` },
-  get_dom_snapshot:   { icon: ScrollText,        color: '#a78bfa', label: () => 'Reading DOM snapshot' },
-  click:              { icon: MousePointerClick, color: '#fb923c', label: (a) => `Click: ${truncate(a?.description || a?.selector, 36)}` },
-  type_text:          { icon: Type,              color: '#34d399', label: (a) => `Type "${truncate(a?.text, 30)}"` },
-  fill:               { icon: Keyboard,          color: '#34d399', label: (a) => `Fill "${truncate(a?.value, 30)}"` },
-  press_key:          { icon: Keyboard,          color: '#fbbf24', label: (a) => `Key: ${a?.key || '?'}` },
-  select_option:      { icon: List,              color: '#60a5fa', label: (a) => `Select "${truncate(a?.value, 30)}"` },
-  scroll:             { icon: ArrowUpRight,      color: '#94a3b8', label: (a) => `Scroll ${a?.direction || 'down'}` },
-  wait:               { icon: Clock,             color: '#94a3b8', label: (a) => a?.for_load ? 'Waiting for page load' : `Wait ${a?.ms || 1000}ms` },
-  wait_for_selector:  { icon: Clock,             color: '#60a5fa', label: (a) => `Waiting for: ${truncate(a?.selector || a?.url_contains, 34)}` },
-  dismiss_overlay:    { icon: XCircle,           color: '#f87171', label: (a) => `Dismissing ${a?.hint || 'overlay'}` },
-  screenshot:         { icon: Camera,            color: '#f472b6', label: () => 'Taking screenshot' },
-  ask_user:           { icon: MessageSquare,     color: '#fbbf24', label: () => 'Asking you...' },
-  report_progress:    { icon: BarChart2,         color: '#818cf8', label: (a) => truncate(a?.message, 42) },
-  hover:              { icon: MousePointer2,     color: '#94a3b8', label: (a) => `Hover: ${truncate(a?.selector, 36)}` },
-  go_back:            { icon: ArrowLeft,         color: '#94a3b8', label: () => 'Going back' },
-  go_forward:         { icon: ArrowRight,        color: '#94a3b8', label: () => 'Going forward' },
-  search_web:         { icon: Search,            color: '#38bdf8', label: (a) => `Search: ${truncate(a?.query, 36)}` },
-  get_console_logs:   { icon: Terminal,          color: '#a3e635', label: () => 'Reading console logs' },
-  get_aria_snapshot:  { icon: Accessibility,     color: '#c084fc', label: () => 'Reading ARIA snapshot' },
-  drag:               { icon: GripVertical,      color: '#fb923c', label: (a) => `Drag → ${truncate(a?.target_selector, 30)}` },
-  learn_site_hint:    { icon: BookMarked,        color: '#34d399', label: (a) => `Learned: ${truncate(a?.hint, 40)}` },
-  probe_form:         { icon: ClipboardList,     color: '#a78bfa', label: () => 'Analyzing form fields' },
-  select_date:        { icon: CalendarDays,      color: '#fb923c', label: (a) => `Select date: ${a?.date || '?'}` },
+  navigate: { icon: Globe, color: '#818cf8', label: (a) => `Navigate → ${a?.url ? truncate(a.url, 40) : '...'}` },
+  get_dom_snapshot: { icon: ScrollText, color: '#a78bfa', label: () => 'Reading DOM snapshot' },
+  click: { icon: MousePointerClick, color: '#fb923c', label: (a) => `Click: ${truncate(a?.description || a?.selector, 36)}` },
+  type_text: { icon: Type, color: '#34d399', label: (a) => `Type "${truncate(a?.text, 30)}"` },
+  fill: { icon: Keyboard, color: '#34d399', label: (a) => `Fill "${truncate(a?.value, 30)}"` },
+  press_key: { icon: Keyboard, color: '#fbbf24', label: (a) => `Key: ${a?.key || '?'}` },
+  select_option: { icon: List, color: '#60a5fa', label: (a) => `Select "${truncate(a?.value, 30)}"` },
+  scroll: { icon: ArrowUpRight, color: '#94a3b8', label: (a) => `Scroll ${a?.direction || 'down'}` },
+  wait: { icon: Clock, color: '#94a3b8', label: (a) => a?.for_load ? 'Waiting for page load' : `Wait ${a?.ms || 1000}ms` },
+  wait_for_selector: { icon: Clock, color: '#60a5fa', label: (a) => `Waiting for: ${truncate(a?.selector || a?.url_contains, 34)}` },
+  dismiss_overlay: { icon: XCircle, color: '#f87171', label: (a) => `Dismissing ${a?.hint || 'overlay'}` },
+  screenshot: { icon: Camera, color: '#f472b6', label: () => 'Taking screenshot' },
+  ask_user: { icon: MessageSquare, color: '#fbbf24', label: () => 'Asking you...' },
+  report_progress: { icon: BarChart2, color: '#818cf8', label: (a) => truncate(a?.message, 42) },
+  hover: { icon: MousePointer2, color: '#94a3b8', label: (a) => `Hover: ${truncate(a?.selector, 36)}` },
+  go_back: { icon: ArrowLeft, color: '#94a3b8', label: () => 'Going back' },
+  go_forward: { icon: ArrowRight, color: '#94a3b8', label: () => 'Going forward' },
+  search_web: { icon: Search, color: '#38bdf8', label: (a) => `Search: ${truncate(a?.query, 36)}` },
+  get_console_logs: { icon: Terminal, color: '#a3e635', label: () => 'Reading console logs' },
+  get_aria_snapshot: { icon: Accessibility, color: '#c084fc', label: () => 'Reading ARIA snapshot' },
+  drag: { icon: GripVertical, color: '#fb923c', label: (a) => `Drag → ${truncate(a?.target_selector, 30)}` },
+  learn_site_hint: { icon: BookMarked, color: '#34d399', label: (a) => `Learned: ${truncate(a?.hint, 40)}` },
+  probe_form: { icon: ClipboardList, color: '#a78bfa', label: () => 'Analyzing form fields' },
+  select_date: { icon: CalendarDays, color: '#fb923c', label: (a) => `Select date: ${a?.date || '?'}` },
 }
 
 function truncate(str, len = 40) {
@@ -598,7 +599,7 @@ function Message({ msg, onAnswer }) {
             : isUser ? 'none' : '1px solid var(--border)',
           borderRadius: isUser ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
           padding: '10px 14px',
-          color: isUser ? '#fff' : isError ? 'var(--error)' : 'var(--text-primary)',
+          color: isUser ? '#000000' : isError ? 'var(--error)' : 'var(--text-primary)',
           fontSize: 13, lineHeight: 1.6,
         }}>
           {isUser ? (
@@ -822,6 +823,8 @@ export default function Sidebar({ currentTitle, hasApiKey, onOpenSettings }) {
       display: 'flex', flexDirection: 'column',
       borderLeft: '1px solid var(--border)',
       background: 'var(--bg-secondary)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
       height: '100%',
     }}>
 
@@ -837,8 +840,10 @@ export default function Sidebar({ currentTitle, hasApiKey, onOpenSettings }) {
           background: 'var(--accent-dim)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           flexShrink: 0,
+          overflow: 'hidden',
         }}>
-          <Bot size={15} color="var(--accent)" />
+          {/* <Bot size={15} color="var(--accent)" /> */}
+          <img src={iconUrl} alt="NanoBrowse AI" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontWeight: 600, fontSize: 13 }}>NanoBrowse AI</div>
@@ -982,7 +987,7 @@ export default function Sidebar({ currentTitle, hasApiKey, onOpenSettings }) {
             style={{
               flex: 1, background: 'none', border: 'none', outline: 'none',
               color: 'var(--text-primary)', fontSize: 13, lineHeight: 1.5,
-              resize: 'none', maxHeight: 120, minHeight: 22, overflowY: 'auto',
+              resize: 'none', maxHeight: 120, minHeight: 25, overflowY: 'auto',
             }}
           />
           <button
