@@ -65,4 +65,4 @@ The compiled binaries will be available in the `dist` directory.
 Contributions are welcome! If you have suggestions or bug reports, please open an issue.
 
 ## License
-MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
