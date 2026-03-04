@@ -1,0 +1,67 @@
+{
+  "name": "nanobrowse",
+  "version": "1.0.0",
+  "description": "Agentic browser with AI sidebar powered by GPT-4o-mini",
+  "main": "main.js",
+  "scripts": {
+    "dev": "concurrently -k \"npm run dev:renderer\" \"npm run dev:electron\"",
+    "dev:renderer": "npm run dev --prefix renderer",
+    "dev:electron": "wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .",
+    "build": "npm run build:renderer && electron-builder",
+    "build:renderer": "npm run build --prefix renderer",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hereisSwapnil/NanoBrowse.git"
+  },
+  "keywords": [
+    "browser",
+    "electron",
+    "ai",
+    "gpt"
+  ],
+  "author": "NanoBrowse",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hereisSwapnil/NanoBrowse/issues"
+  },
+  "homepage": "https://github.com/hereisSwapnil/NanoBrowse#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^40.6.1",
+    "electron-builder": "^26.8.1",
+    "wait-on": "^9.0.4"
+  },
+  "dependencies": {
+    "openai": "^6.25.0"
+  },
+  "build": {
+    "appId": "com.nanobrowse.app",
+    "productName": "NanoBrowse",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/dist/**",
+      "node_modules/**",
+      "assets/**"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "assets/icon.icns",
+      "target": "dmg"
+    },
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
